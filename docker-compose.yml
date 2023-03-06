@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  server:
+    image: itzg/minecraft-server
+    container_name: paper-server
+    stdin_open: true
+    tty: true
+    environment:
+      EULA: "true"
+      TYPE: PAPER
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PORT: ${RCON_PORT}
+      MEMORY: ${MEMORY}
+      SEED: ${SEED}
+      restart: always
+    volumes:
+    - ./data:/data
+    ports:
+      - "25565:25565"
+      - "8123:8123"
+    restart: unless-stopped
+  backups:
+    image: itzg/mc-backup
+    container_name: paper-backup
+    environment:
+      BACKUP_INTERVAL: ${BACKUP_INTERVAL}
+      INITIAL_DELAY: ${INITIAL_BACKUP_DELAY}
+      PRUNE_BACKUPS_DAYS: ${PRUNE_BACKUPS_DAYS}
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_HOST: paper-server
+      RCON_PORT: ${RCON_PORT}
+      PRE_BACKUP_SCRIPT: |
+        echo "Starting backup"
+      POST_BACKUP_SCRIPT: |
+        echo "Backup finished"
+    volumes:
+      - ./data:/data:ro
+      - ./backups:/backups
