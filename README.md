@@ -49,7 +49,7 @@ Link user data
 ```
 
 ## Configuring Firewall
-Opens firewall for Minecraft. Port `19132` is needed if bedrock player want to connect through plugins [Geyser and Floodgate](https://geysermc.org/). 
+Opens firewall for Minecraft. Port `19132` is needed if bedrock players want to connect through plugins [Geyser and Floodgate](https://geysermc.org/). 
 
 ```sh
 `make firewall`
