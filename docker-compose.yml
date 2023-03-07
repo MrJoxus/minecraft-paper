@@ -18,6 +18,7 @@ services:
     - ./data:/data
     ports:
       - "25565:25565"
+      - "19132:19132"
       - "8123:8123"
     restart: unless-stopped
   backups:

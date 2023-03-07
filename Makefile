@@ -30,3 +30,7 @@ ln-users:
 	ln -f ./config/data/banned-players.json ./data/banned-players.json
 	ln -f ./config/data/whitelist.json ./data/whitelist.json
 	ln -f ./config/data/ops.json ./data/ops.json
+
+firewall: 
+	sudo ufw allow 25565/tcp
+	sudo ufw allow 19132/udp
